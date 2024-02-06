@@ -9,6 +9,7 @@
 
 	public class SpawnOnMap : MonoBehaviour
 	{
+		//Test commit
 		[SerializeField]
 		AbstractMap _map;
 
