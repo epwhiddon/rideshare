@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Linq;
 using UnityEngine;
 
-public class WaitEvent : MonoBehaviour
+public class Wait : MonoBehaviour
 {
     private PriorityQueue<Event> eventQueue = new PriorityQueue<Event>();
     private double simulationTime = 0;
@@ -183,7 +183,7 @@ class Program
 {
     static void Main()
     {
-        WaitEvent simulation = new WaitEvent();
+        Wait simulation = new Wait();
         simulation.StartWait();
     }
 }
