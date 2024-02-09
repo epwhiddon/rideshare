@@ -5,10 +5,28 @@ using System.Runtime.Serialization;
 using System.Linq;
 using UnityEngine;
 
-class Wait
+public class WaitEvent : MonoBehaviour
 {
     private PriorityQueue<Event> eventQueue = new PriorityQueue<Event>();
     private double simulationTime = 0;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        StartWait();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+      public void StartWait()
+    {
+        ScheduleEvent(0, MainMenu);
+        RunSimulation();
+    }
 
     private class Event
     {
@@ -16,6 +34,7 @@ class Wait
         public Action Action { get; set; }
     }
 
+    //Unused Code?
     private class PriorityQueue<T>
     {
         private List<T> elements = new List<T>();
@@ -54,22 +73,14 @@ class Wait
     }
 
 
-
-
-    public void StartWait()
-    {
-        ScheduleEvent(0, MainMenu);
-        RunSimulation();
-    }
-
     private void MainMenu()
     {
-        Console.WriteLine($"Simulation Time: {simulationTime}");
+        Debug.Log($"Simulation Time: {simulationTime}");
 
-        Console.WriteLine("Wait Main Menu:");
-        Console.WriteLine("1. End Game");
-        Console.WriteLine("2. Take a Break");
-        Console.WriteLine("3. Add Fuel");
+        Debug.Log("Wait Main Menu:");
+        Debug.Log("1. End Game");
+        Debug.Log("2. Take a Break");
+        Debug.Log("3. Add Fuel");
 
         int choice = GetChoice(1, 3);
 
@@ -89,11 +100,11 @@ class Wait
 
     private void OnEndGame()
     {
-        Console.Write("Do you want to end the game? (yes/no): ");
-        string endGameChoice = Console.ReadLine().ToLower();
+        Debug.Log("Do you want to end the game? (yes/no): ");
+        string endGameChoice = Console.ReadLine().ToLower();    //need to bug
         if (endGameChoice == "yes")
         {
-            ReportFinalMetrics();
+            //ReportFinalMetrics();
             Environment.Exit(0);
         }
         else
@@ -104,20 +115,20 @@ class Wait
 
     private void OnTakeBreak()
     {
-        Random random = new Random();
-        int breakTime = random.Next(5, 30); // Random break time between 5 to 30 minutes
+        System.Random rand = new System.Random();
+        int breakTime = rand.Next(5, 30); // Random break time between 5 to 30 minutes
 
-        Console.WriteLine($"Taking a break for {breakTime} minutes...");
+        Debug.Log($"Taking a break for {breakTime} minutes...");
 
         ScheduleEvent(simulationTime + breakTime, () => EndBreak());
     }
 
     private void EndBreak()
     {
-        Console.WriteLine("Break time ended.");
+        Debug.Log("Break time ended.");
 
-        Console.Write("End break time? (yes/no): ");
-        string endBreakChoice = Console.ReadLine().ToLower();
+        Debug.Log("End break time? (yes/no): ");
+        string endBreakChoice = Console.ReadLine().ToLower();   //need to bug
 
         if (endBreakChoice == "no")
         {
@@ -131,20 +142,20 @@ class Wait
 
     private void OnAddFuel()
     {
-        Random random = new Random();
-        int fuelTime = random.Next(10, 60); // Random fueling time between 10 to 60 minutes
+        System.Random rand = new System.Random();
+        int fuelTime = rand.Next(10, 60);           // Random fueling time between 10 to 60 minutes
 
-        Console.WriteLine($"Adding fuel for {fuelTime} minutes...");
+        Debug.Log($"Adding fuel for {fuelTime} minutes...");
 
         ScheduleEvent(simulationTime + fuelTime, () => EndFuel());
     }
 
     private void EndFuel()
     {
-        Console.WriteLine("Fueling time ended.");
+        Debug.Log("Fueling time ended.");
 
-        Console.Write("End fuel time? (yes/no): ");
-        string endFuelChoice = Console.ReadLine().ToLower();
+        Debug.Log("End fuel time? (yes/no): ");
+        string endFuelChoice = Console.ReadLine().ToLower();    //need to bug
 
         if (endFuelChoice == "no")
         {
@@ -162,7 +173,7 @@ class Wait
         int choice;
         do
         {
-            Console.Write("Enter your choice: ");
+            Debug.Log("Enter your choice: ");
         } while (!int.TryParse(Console.ReadLine(), out choice) || choice < min || choice > max);
         return choice;
     }
@@ -172,7 +183,7 @@ class Program
 {
     static void Main()
     {
-        Wait simulation = new Wait();
+        WaitEvent simulation = new WaitEvent();
         simulation.StartWait();
     }
 }
