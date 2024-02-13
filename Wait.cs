@@ -24,7 +24,7 @@ public class Wait : MonoBehaviour
 
       public void StartWait()
     {
-        ScheduleEvent(0, MainMenu);
+        ScheduleEvent(0, WaitMenu);
         RunSimulation();
     }
 
@@ -73,7 +73,7 @@ public class Wait : MonoBehaviour
     }
 
 
-    private void MainMenu()
+    private void WaitMenu()
     {
         Debug.Log($"Simulation Time: {simulationTime}");
 
@@ -109,7 +109,7 @@ public class Wait : MonoBehaviour
         }
         else
         {
-            ScheduleEvent(simulationTime, MainMenu);
+            ScheduleEvent(simulationTime, WaitMenu);
         }
     }
 
@@ -136,7 +136,7 @@ public class Wait : MonoBehaviour
         }
         else
         {
-            ScheduleEvent(simulationTime, MainMenu);
+            ScheduleEvent(simulationTime, WaitMenu);
         }
     }
 
@@ -163,7 +163,7 @@ public class Wait : MonoBehaviour
         }
         else
         {
-            ScheduleEvent(simulationTime, MainMenu);
+            ScheduleEvent(simulationTime, WaitMenu);
         }
     }
 
