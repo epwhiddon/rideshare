@@ -34,7 +34,6 @@ public class Wait : MonoBehaviour
         public Action Action { get; set; }
     }
 
-    //Unused Code?
     private class PriorityQueue<T>
     {
         private List<T> elements = new List<T>();
@@ -174,7 +173,7 @@ public class Wait : MonoBehaviour
         do
         {
             Debug.Log("Enter your choice: ");
-        } while (!int.TryParse(Console.ReadLine(), out choice) || choice < min || choice > max);
+        } while (!int.TryParse(Console.ReadLine(), out choice) || choice < min || choice > max); //need to bug
         return choice;
     }
 }
